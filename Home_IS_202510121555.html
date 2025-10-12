@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inebriant Studios</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #000;
+      --fg: #fff;
+      --sub: #ccc;
+      --glow: #00b4d8;
+      --glow-soft: #90e0ef;
+      --radius: 18px;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 50% -10%, rgba(0,180,216,0.12), transparent 60%) , var(--bg);
+      color: var(--fg);
+      margin: 0;
+      padding: 3rem 1rem;
+      text-align: center;
+      animation: fadeIn 800ms ease-out both;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: var(--sub);
+      margin: 0.5rem 0 2.5rem;
+    }
+
+    .links a {
+      display: inline-block;
+      margin: 0.5rem;
+      color: var(--glow);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+      color: var(--glow-soft);
+    }
+
+    /* --- EXPERIENCE PORTALS --- */
+    .experience-section {
+      margin-top: 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .experience-card {
+      display: inline-block;
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius);
+      padding: 2.5rem 3rem;
+      border: 1px solid rgba(144,224,239,0.18);
+      box-shadow:
+        0 0 0.5px rgba(0,180,216,0.5) inset,
+        0 10px 25px rgba(0,0,0,0.55),
+        0 0 24px rgba(0,180,216,0.14);
+      transition: all 0.4s ease;
+      animation: cardFloat 4s ease-in-out infinite alternate;
+    }
+
+    .experience-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      border-color: rgba(144,224,239,0.35);
+      box-shadow:
+        0 0 1px rgba(0,180,216,0.8) inset,
+        0 18px 32px rgba(0,0,0,0.6),
+        0 0 36px rgba(0,180,216,0.22);
+    }
+
+    .experience-card a {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--glow);
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .experience-card a:hover {
+      color: var(--glow-soft);
+    }
+
+    .experience-card p {
+      margin-top: 0.75rem;
+      color: var(--sub);
+      font-size: 0.95rem;
+      max-width: 320px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes cardFloat {
+      from { transform: translateY(0px); }
+      to { transform: translateY(-10px); }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .experience-card {
+        width: 90%;
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Inebriant Studios</h1>
+  <p>Live Boldly</p>
+
+  <div class="links">
+    <a href="https://www.instagram.com/inebriantstudios/" target="_blank">Instagram</a>
+    <a href="https://www.youtube.com/@inebriant" target="_blank">YouTube</a>
+  </div>
+
+  <!-- Experience Section -->
+  <div class="experience-section">
+    <div class="experience-card">
+      <a href="Videos_IS_202510110241.html">Videos</a>
+      <p>Enter a world of motion and emotion — cinematic experiments, music, and moods crafted by Inebriant Studios.</p>
+    </div>
+  </div>
+</body>
+</html>
