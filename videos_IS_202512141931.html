@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VIDEOS | INEBRIANT STUDIOS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --bg: #000;
+      --fg: #ffffff;
+      --sub: #9a9a9a;
+      --border: rgba(255,255,255,0.14);
+      --border-hover: rgba(255,255,255,0.35);
+      --radius: 18px;
+    }
+
+    body {
+      margin: 0;
+      padding: 2.5rem 1rem 3.5rem;
+      background: var(--bg);
+      color: var(--fg);
+      text-align: center;
+      font-family: Arial, sans-serif;
+      animation: fadeIn 700ms ease-out both;
+    }
+
+    /* CONTACT */
+    .contact {
+      margin-bottom: 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.6px;
+    }
+
+    .contact a {
+      color: var(--sub);
+      text-decoration: none;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+    .contact a:hover {
+      color: var(--fg);
+    }
+
+    /* TITLES */
+    .studio-title {
+      margin: 0 0 0.75rem;
+      font-size: 2.6rem;
+      letter-spacing: 0.35rem;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-family: "Times New Roman", Times, Georgia, serif;
+    }
+
+    .page-title {
+      margin: 0 0 2.25rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.22rem;
+      text-transform: uppercase;
+      color: var(--sub);
+    }
+
+    /* NAV */
+    .links {
+      margin-bottom: 3.25rem;
+    }
+
+    .links a {
+      margin: 0.5rem 0.75rem;
+      color: var(--sub);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.12rem;
+      text-transform: uppercase;
+      transition: color 0.25s ease;
+    }
+
+    .links a:hover {
+      color: var(--fg);
+    }
+
+    /* GRID */
+    .video-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin: 0 auto;
+      max-width: 1100px;
+    }
+
+    /* VIDEO CARD */
+    .video-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.6);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      animation: cardFloat 6s ease-in-out infinite alternate;
+    }
+
+    .video-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hover);
+      box-shadow:
+        0 0 1px rgba(255,255,255,0.55) inset,
+        0 20px 40px rgba(0,0,0,0.7),
+        0 0 26px rgba(255,255,255,0.14);
+    }
+
+    .video-card iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+      background: #050505;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes cardFloat {
+      from { transform: translateY(0); }
+      to { transform: translateY(-5px); }
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      .studio-title {
+        font-size: 2.2rem;
+        letter-spacing: 0.28rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contact">
+    <a href="mailto:inebriantstudios@gmail.com">inebriantstudios@gmail.com</a>
+  </div>
+
+  <h1 class="studio-title">INEBRIANT STUDIOS</h1>
+  <div class="page-title">VIDEOS</div>
+
+  <div class="links">
+    <a href="index.html">Back to Home</a>
+  </div>
+
+  <div class="video-row">
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/gl6JWl4MfIY" allowfullscreen></iframe>
+    </div>
+
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/odyKSlU-GZo" allowfullscreen></iframe>
+    </div>
+
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/7xi-0-dWp6k" allowfullscreen></iframe>
+    </div>
+
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/maZ1furNlGk" allowfullscreen></iframe>
+    </div>
+
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/P4ICkUEUPVU" allowfullscreen></iframe>
+    </div>
+
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/DuKOxZOFaRg" allowfullscreen></iframe>
+    </div>
+  </div>
+
+</body>
+</html>
+
+
+
