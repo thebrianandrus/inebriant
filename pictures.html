@@ -17,8 +17,9 @@
       --btn-bg-hover:rgba(255,255,255,.10);
       --shadow:0 20px 55px rgba(0,0,0,.70);
 
-      /* Adjust if you change header spacing */
-      --header-space: 310px;
+      /* Approx space used by header + nav + footer text.
+         If you add/remove header content, tweak this number. */
+      --chrome: 300px;
     }
 
     *{ box-sizing:border-box; }
@@ -34,7 +35,11 @@
       animation:fadeIn 600ms ease-out both;
     }
 
-    .contact{ margin-bottom:2rem; font-size:.8rem; letter-spacing:.6px; }
+    .contact{
+      margin-bottom:2rem;
+      font-size:.8rem;
+      letter-spacing:.6px;
+    }
     .contact a{
       color:var(--sub);
       text-decoration:none;
@@ -47,9 +52,10 @@
       font-size:2.6rem;
       letter-spacing:.35rem;
       text-transform:uppercase;
-      font-family:"Times New Roman", serif;
+      font-family:"Times New Roman", Times, Georgia, serif;
       font-weight:400;
     }
+
     .page-title{
       margin:0 0 2rem;
       font-size:.95rem;
@@ -66,10 +72,10 @@
       font-size:.85rem;
       letter-spacing:.12rem;
       text-transform:uppercase;
+      transition:color .2s ease;
     }
     .links a:hover{ color:var(--fg); }
 
-    /* VIEWER */
     .viewer{
       position:relative;
       margin:0 auto;
@@ -85,30 +91,37 @@
       box-shadow:var(--shadow);
       overflow:hidden;
 
-      /* ✅ Key change: use remaining viewport height */
-      height: clamp(420px, calc(100dvh - var(--header-space)), 900px);
+      /* Uses as much vertical space as possible while keeping it responsive */
+      height: clamp(420px, calc(100dvh - var(--chrome)), 900px);
     }
 
-    /* Centering container */
+    /* Flex centering = consistent centering across browsers */
     .slide{
       position:absolute;
       inset:0;
-      display:grid;
-      place-items:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
 
-      /* ✅ Key change: reduce padding to avoid "top/bottom cut" feeling */
-      padding: 4px;  /* set to 0px if you want max size */
+      /* IMPORTANT: keep this at 0 for maximum image size */
+      padding:0;
     }
 
-    /* ✅ Key change: guarantee no cropping */
+    /* GUARANTEE: image will never be cropped (top/bottom/sides) */
     .slide img{
       display:block;
-      max-width:100%;
-      max-height:100%;
-      width:auto;
-      height:auto;
-      object-fit:contain;
-      object-position:center;
+
+      /* Fit entirely inside the frame */
+      max-width:100% !important;
+      max-height:100% !important;
+
+      /* Preserve aspect ratio */
+      width:auto !important;
+      height:auto !important;
+
+      object-fit:contain !important;
+      object-position:center !important;
+
       user-select:none;
       -webkit-user-drag:none;
     }
@@ -127,7 +140,6 @@
       text-align:center;
     }
 
-    /* NAV BUTTONS */
     .navBtn{
       position:absolute;
       top:50%;
@@ -147,6 +159,7 @@
       transition:all .2s ease;
       z-index:10;
       user-select:none;
+      opacity:0.98;
     }
     .navBtn:hover{
       background:var(--btn-bg-hover);
@@ -159,15 +172,16 @@
     @media (max-width:680px){
       .navBtn.left{ left:10px; }
       .navBtn.right{ right:10px; }
-
-      /* slightly smaller header footprint on mobile */
-      :root { --header-space: 290px; }
+      :root{ --chrome: 285px; }
+      .studio-title{ font-size:2.2rem; letter-spacing:.28rem; }
     }
 
     .metaRow{
       margin-top:.9rem;
       display:flex;
       justify-content:space-between;
+      align-items:center;
+      gap:12px;
       max-width:1200px;
       margin-left:auto;
       margin-right:auto;
@@ -175,7 +189,6 @@
       font-size:.8rem;
       letter-spacing:.08rem;
       text-transform:uppercase;
-      gap:12px;
     }
 
     .pill{
@@ -185,11 +198,17 @@
       background:rgba(255,255,255,.04);
       color:var(--fg);
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+      letter-spacing:.05rem;
+      text-transform:none;
     }
 
     @keyframes fadeIn{
       from{ opacity:0; transform:translateY(8px); }
       to{ opacity:1; transform:translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important; }
     }
   </style>
 </head>
@@ -234,6 +253,7 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // Images expected in the SAME folder as pictures.html (repo root)
       const IMAGES = [
         "9714.jpg",
         "9724.jpg",
@@ -282,6 +302,10 @@
         if (!IMAGES.length){
           setStatus("No images configured.");
           counter.textContent = "0 / 0";
+          prevBtn.disabled = true;
+          nextBtn.disabled = true;
+          prevBtn.style.opacity = "0.35";
+          nextBtn.style.opacity = "0.35";
           return;
         }
 
@@ -296,10 +320,16 @@
           photo.src = src;
           photo.alt = `Photograph ${index + 1} of ${IMAGES.length}`;
           hideStatus();
+
           preload(IMAGES[normalizeIndex(index + 1)]);
           preload(IMAGES[normalizeIndex(index - 1)]);
         };
-        temp.onerror = () => setStatus(`Failed to load: ${src}`);
+
+        temp.onerror = () => {
+          console.error("FAILED TO LOAD:", src, "from", window.location.href);
+          setStatus(`Could not load: ${src}\nCheck filename & location.`);
+        };
+
         temp.src = src;
       }
 
@@ -314,16 +344,29 @@
         if (e.key === "ArrowLeft")  prev();
       });
 
+      // Swipe
       let startX = null;
+      let startY = null;
+
       frame.addEventListener("touchstart", (e) => {
-        startX = e.touches[0].clientX;
+        const t = e.touches[0];
+        startX = t.clientX;
+        startY = t.clientY;
       }, { passive: true });
 
       frame.addEventListener("touchend", (e) => {
-        if (startX === null) return;
-        const dx = e.changedTouches[0].clientX - startX;
-        if (Math.abs(dx) > 40) dx < 0 ? next() : prev();
+        if (startX === null || startY === null) return;
+        const t = e.changedTouches[0];
+        const dx = t.clientX - startX;
+        const dy = t.clientY - startY;
+
+        if (Math.abs(dx) > 45 && Math.abs(dy) < 80) {
+          if (dx < 0) next();
+          else prev();
+        }
+
         startX = null;
+        startY = null;
       }, { passive: true });
 
       show(0);
@@ -331,6 +374,7 @@
   </script>
 </body>
 </html>
+
 
 
 
