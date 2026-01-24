@@ -1,183 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI — Brian Andrus</title>
-    <meta
-      name="description"
-      content="AI experiments, tools, and systems — automation, creative workflows, and applied intelligence."
-    />
+<html>
+<head>
+  <title>AI | INEBRIANT STUDIOS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Match your site setup -->
-    <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --bg: #000;
+      --fg: #ffffff;
+      --sub: #9a9a9a;
+      --border: rgba(255,255,255,0.14);
+      --border-hover: rgba(255,255,255,0.35);
+      --radius: 18px;
+    }
 
-    <!-- Optional: if you use a favicon already -->
-    <!-- <link rel="icon" href="assets/favicon.png" /> -->
-  </head>
+    body {
+      margin: 0;
+      padding: 2.5rem 1rem 3.5rem;
+      background: var(--bg);
+      color: var(--fg);
+      text-align: center;
+      font-family: Arial, sans-serif;
+      animation: fadeIn 700ms ease-out both;
+    }
 
-  <body>
-    <!-- Top Nav / Header (keep consistent with your other pages) -->
-    <header class="site-header">
-      <div class="container header-inner">
-        <!-- Name as home link -->
-        <a class="site-title" href="index.html">BRIAN ANDRUS</a>
+    /* CONTACT */
+    .contact {
+      margin-bottom: 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.6px;
+    }
 
-        <!-- Nav links (adjust to match your actual site pages) -->
-        <nav class="site-nav" aria-label="Primary navigation">
-          <a href="videos.html">VIDEOS</a>
-          <a href="photos.html">PHOTOS</a>
-          <a href="resume.html">RESUME</a>
-          <a class="active" href="ai.html">AI</a>
-          <a href="contact.html">CONTACT</a>
-        </nav>
-      </div>
-    </header>
+    .contact a {
+      color: var(--sub);
+      text-decoration: none;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
 
-    <main>
-      <!-- Hero -->
-      <section class="page-hero">
-        <div class="container">
-          <h1 class="page-title">AI</h1>
-          <p class="page-subtitle">
-            Experiments, workflows, and tools — built to speed up creation, sharpen strategy, and
-            push what a “studio” can do solo.
-          </p>
-        </div>
-      </section>
+    .contact a:hover {
+      color: var(--fg);
+    }
 
-      <!-- Featured / Statement -->
-      <section class="page-section">
-        <div class="container">
-          <div class="ai-intro">
-            <h2 class="section-title">What I’m building</h2>
-            <p class="section-copy">
-              I’m using AI as a practical engine: creative assistance, automation, and systems that
-              reduce friction. The goal isn’t “AI art” — it’s faster iteration, better decisions,
-              and higher-quality output across video, photo, writing, and production.
-            </p>
+    /* TITLES */
+    .studio-title {
+      margin: 0 0 0.75rem;
+      font-size: 2.6rem;
+      letter-spacing: 0.35rem;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-family: "Times New Roman", Times, Georgia, serif;
+    }
 
-            <!-- Optional quick bullets -->
-            <ul class="ai-bullets">
-              <li>Workflow automation (repeatable, reliable, versioned)</li>
-              <li>Content systems (scripts, captions, edits, structure)</li>
-              <li>Research + synthesis (fast learning, clear outputs)</li>
-              <li>Tooling (prompt frameworks, templates, small utilities)</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+    .page-title {
+      margin: 0 0 2.25rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.22rem;
+      text-transform: uppercase;
+      color: var(--sub);
+    }
 
-      <!-- AI Grid -->
-      <section class="page-section">
-        <div class="container">
-          <h2 class="section-title">Projects & experiments</h2>
+    /* NAV */
+    .links {
+      margin-bottom: 3.25rem;
+    }
 
-          <div class="ai-grid">
-            <!-- Card 1 -->
-            <article class="ai-card">
-              <h3 class="ai-card-title">Marketing Spec → Clean Prompt Pack</h3>
-              <p class="ai-card-copy">
-                Converts messy source material (PDFs / notes) into consistent, structured prompting
-                inputs for creative + personalization workflows.
-              </p>
-              <div class="ai-card-meta">
-                <span>Category: Workflow</span>
-                <span>Tools: ChatGPT, Markdown/CSV</span>
-              </div>
-            </article>
+    .links a {
+      margin: 0.5rem 0.75rem;
+      color: var(--sub);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.12rem;
+      text-transform: uppercase;
+      transition: color 0.25s ease;
+    }
 
-            <!-- Card 2 -->
-            <article class="ai-card">
-              <h3 class="ai-card-title">Self-Tape Feedback System</h3>
-              <p class="ai-card-copy">
-                A repeatable review checklist + note format to tighten acting tapes fast without
-                over-engineering performance.
-              </p>
-              <div class="ai-card-meta">
-                <span>Category: Acting</span>
-                <span>Tools: Premiere, AI notes</span>
-              </div>
-            </article>
+    .links a:hover {
+      color: var(--fg);
+    }
 
-            <!-- Card 3 -->
-            <article class="ai-card">
-              <h3 class="ai-card-title">Personal Knowledge Base</h3>
-              <p class="ai-card-copy">
-                Organizes learnings, experiments, and references into a searchable system so ideas
-                compound instead of disappearing.
-              </p>
-              <div class="ai-card-meta">
-                <span>Category: Systems</span>
-                <span>Tools: Notion/Docs, tags</span>
-              </div>
-            </article>
+    /* GRID */
+    .ai-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin: 0 auto;
+      max-width: 1100px;
+    }
 
-            <!-- Card 4 -->
-            <article class="ai-card">
-              <h3 class="ai-card-title">Creative Concepts Generator</h3>
-              <p class="ai-card-copy">
-                Rapid idea iteration for cinematic shorts, brand concepts, and satire — then filters
-                by feasibility and “signal.”
-              </p>
-              <div class="ai-card-meta">
-                <span>Category: Creative</span>
-                <span>Tools: LLM prompts</span>
-              </div>
-            </article>
+    /* AI CARD */
+    .ai-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.6);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      animation: cardFloat 6s ease-in-out infinite alternate;
 
-            <!-- Card 5 -->
-            <article class="ai-card">
-              <h3 class="ai-card-title">Website Build Assistant</h3>
-              <p class="ai-card-copy">
-                Uses AI to accelerate clean HTML/CSS builds, maintain consistency, and reduce
-                breakage with reusable patterns.
-              </p>
-              <div class="ai-card-meta">
-                <span>Category: Web</span>
-                <span>Tools: VS Code, GitHub</span>
-              </div>
-            </article>
+      /* Mirror the iframe "block" feel */
+      padding: 1.25rem 1.25rem 1.15rem;
+      text-align: left;
+    }
 
-            <!-- Card 6 -->
-            <article class="ai-card">
-              <h3 class="ai-card-title">Ops + Tracking Templates</h3>
-              <p class="ai-card-copy">
-                Lightweight templates for tracking projects, versioning iterations, and keeping
-                momentum without burnout.
-              </p>
-              <div class="ai-card-meta">
-                <span>Category: Ops</span>
-                <span>Tools: Sheets, DB, checklists</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+    .ai-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hover);
+      box-shadow:
+        0 0 1px rgba(255,255,255,0.55) inset,
+        0 20px 40px rgba(0,0,0,0.7),
+        0 0 26px rgba(255,255,255,0.14);
+    }
 
-      <!-- CTA / Footer block -->
-      <section class="page-section">
-        <div class="container">
-          <div class="ai-cta">
-            <h2 class="section-title">Want to collaborate?</h2>
-            <p class="section-copy">
-              If you’re building something in production, marketing automation, or content systems,
-              I’m open to collaborating — especially if it’s fast, weird, and useful.
-            </p>
-            <a class="button" href="contact.html">Contact</a>
-          </div>
-        </div>
-      </section>
-    </main>
+    .ai-card h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1rem;
+      letter-spacing: 0.08rem;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
 
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <p>© <span id="year"></span> Brian Andrus</p>
-      </div>
-    </footer>
+    .ai-card p {
+      margin: 0 0 0.9rem;
+      color: var(--sub);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
 
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-  </body>
+    .ai-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 0.8rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.05rem;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .ai-meta li {
+      padding: 0.35rem 0.55rem;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .ai-link {
+      display: inline-block;
+      margin-top: 0.9rem;
+      color: var(--sub);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.10rem;
+      text-transform: uppercase;
+      transition: color 0.25s ease;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+    .ai-link:hover {
+      color: var(--fg);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes cardFloat {
+      from { transform: translateY(0); }
+      to { transform: translateY(-5px); }
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      .studio-title {
+        font-size: 2.2rem;
+        letter-spacing: 0.28rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contact">
+    <a href="mailto:inebriantstudios@gmail.com">inebriantstudios@gmail.com</a>
+  </div>
+
+  <h1 class="studio-title">INEBRIANT STUDIOS</h1>
+  <div class="page-title">AI</div>
+
+  <div class="links">
+    <a href="index.html">Back to Home</a>
+  </div>
+
+  <div class="ai-row">
+
+    <div class="ai-card">
+      <h3>Prompt Pack — Brand / Program Inputs</h3>
+      <p>
+        Structured prompt templates for turning messy source material into consistent, usable inputs.
+      </p>
+      <ul class="ai-meta">
+        <li>Workflow</li>
+        <li>Templates</li>
+        <li>LLMs</li>
+      </ul>
+      <!-- Optional link (delete if you don't want it) -->
+      <!-- <a class="ai-link" href="#" target="_blank" rel="noopener">View</a> -->
+    </div>
+
+    <div class="ai-card">
+      <h3>AI Notes System — Editing + Revisions</h3>
+      <p>
+        A repeatable “notes to self” format for faster video iteration without losing creative intent.
+      </p>
+      <ul class="ai-meta">
+        <li>Post</li>
+        <li>Process</li>
+        <li>Versioning</li>
+      </ul>
+    </div>
+
+    <div class="ai-card">
+      <h3>Automation Ideas — Studio Ops</h3>
+      <p>
+        Lightweight automations to reduce friction: naming, organizing, exporting, and documenting.
+      </p>
+      <ul class="ai-meta">
+        <li>Ops</li>
+        <li>Automation</li>
+        <li>Systems</li>
+      </ul>
+    </div>
+
+    <div class="ai-card">
+      <h3>Concept Generator — Shorts / Sketches</h3>
+      <p>
+        Rapid idea generation + filtering for feasibility, tone, and “signal,” then turning it into a shootable plan.
+      </p>
+      <ul class="ai-meta">
+        <li>Creative</li>
+        <li>Writing</li>
+        <li>Planning</li>
+      </ul>
+    </div>
+
+    <div class="ai-card">
+      <h3>Website Build Assistant</h3>
+      <p>
+        AI-assisted HTML/CSS iterations to build fast while staying consistent with your site’s aesthetic.
+      </p>
+      <ul class="ai-meta">
+        <li>Web</li>
+        <li>HTML/CSS</li>
+        <li>Iteration</li>
+      </ul>
+    </div>
+
+    <div class="ai-card">
+      <h3>Research Synth — Actionable Summaries</h3>
+      <p>
+        Quick synthesis on tools, trends, and decisions so you move faster with clearer next steps.
+      </p>
+      <ul class="ai-meta">
+        <li>Research</li>
+        <li>Synthesis</li>
+        <li>Strategy</li>
+      </ul>
+    </div>
+
+  </div>
+
+</body>
 </html>
