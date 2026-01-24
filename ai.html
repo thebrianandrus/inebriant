@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI — Brian Andrus</title>
+    <meta
+      name="description"
+      content="AI experiments, tools, and systems — automation, creative workflows, and applied intelligence."
+    />
+
+    <!-- Match your site setup -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Optional: if you use a favicon already -->
+    <!-- <link rel="icon" href="assets/favicon.png" /> -->
+  </head>
+
+  <body>
+    <!-- Top Nav / Header (keep consistent with your other pages) -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <!-- Name as home link -->
+        <a class="site-title" href="index.html">BRIAN ANDRUS</a>
+
+        <!-- Nav links (adjust to match your actual site pages) -->
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="videos.html">VIDEOS</a>
+          <a href="photos.html">PHOTOS</a>
+          <a href="resume.html">RESUME</a>
+          <a class="active" href="ai.html">AI</a>
+          <a href="contact.html">CONTACT</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="page-hero">
+        <div class="container">
+          <h1 class="page-title">AI</h1>
+          <p class="page-subtitle">
+            Experiments, workflows, and tools — built to speed up creation, sharpen strategy, and
+            push what a “studio” can do solo.
+          </p>
+        </div>
+      </section>
+
+      <!-- Featured / Statement -->
+      <section class="page-section">
+        <div class="container">
+          <div class="ai-intro">
+            <h2 class="section-title">What I’m building</h2>
+            <p class="section-copy">
+              I’m using AI as a practical engine: creative assistance, automation, and systems that
+              reduce friction. The goal isn’t “AI art” — it’s faster iteration, better decisions,
+              and higher-quality output across video, photo, writing, and production.
+            </p>
+
+            <!-- Optional quick bullets -->
+            <ul class="ai-bullets">
+              <li>Workflow automation (repeatable, reliable, versioned)</li>
+              <li>Content systems (scripts, captions, edits, structure)</li>
+              <li>Research + synthesis (fast learning, clear outputs)</li>
+              <li>Tooling (prompt frameworks, templates, small utilities)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Grid -->
+      <section class="page-section">
+        <div class="container">
+          <h2 class="section-title">Projects & experiments</h2>
+
+          <div class="ai-grid">
+            <!-- Card 1 -->
+            <article class="ai-card">
+              <h3 class="ai-card-title">Marketing Spec → Clean Prompt Pack</h3>
+              <p class="ai-card-copy">
+                Converts messy source material (PDFs / notes) into consistent, structured prompting
+                inputs for creative + personalization workflows.
+              </p>
+              <div class="ai-card-meta">
+                <span>Category: Workflow</span>
+                <span>Tools: ChatGPT, Markdown/CSV</span>
+              </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="ai-card">
+              <h3 class="ai-card-title">Self-Tape Feedback System</h3>
+              <p class="ai-card-copy">
+                A repeatable review checklist + note format to tighten acting tapes fast without
+                over-engineering performance.
+              </p>
+              <div class="ai-card-meta">
+                <span>Category: Acting</span>
+                <span>Tools: Premiere, AI notes</span>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="ai-card">
+              <h3 class="ai-card-title">Personal Knowledge Base</h3>
+              <p class="ai-card-copy">
+                Organizes learnings, experiments, and references into a searchable system so ideas
+                compound instead of disappearing.
+              </p>
+              <div class="ai-card-meta">
+                <span>Category: Systems</span>
+                <span>Tools: Notion/Docs, tags</span>
+              </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="ai-card">
+              <h3 class="ai-card-title">Creative Concepts Generator</h3>
+              <p class="ai-card-copy">
+                Rapid idea iteration for cinematic shorts, brand concepts, and satire — then filters
+                by feasibility and “signal.”
+              </p>
+              <div class="ai-card-meta">
+                <span>Category: Creative</span>
+                <span>Tools: LLM prompts</span>
+              </div>
+            </article>
+
+            <!-- Card 5 -->
+            <article class="ai-card">
+              <h3 class="ai-card-title">Website Build Assistant</h3>
+              <p class="ai-card-copy">
+                Uses AI to accelerate clean HTML/CSS builds, maintain consistency, and reduce
+                breakage with reusable patterns.
+              </p>
+              <div class="ai-card-meta">
+                <span>Category: Web</span>
+                <span>Tools: VS Code, GitHub</span>
+              </div>
+            </article>
+
+            <!-- Card 6 -->
+            <article class="ai-card">
+              <h3 class="ai-card-title">Ops + Tracking Templates</h3>
+              <p class="ai-card-copy">
+                Lightweight templates for tracking projects, versioning iterations, and keeping
+                momentum without burnout.
+              </p>
+              <div class="ai-card-meta">
+                <span>Category: Ops</span>
+                <span>Tools: Sheets, DB, checklists</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA / Footer block -->
+      <section class="page-section">
+        <div class="container">
+          <div class="ai-cta">
+            <h2 class="section-title">Want to collaborate?</h2>
+            <p class="section-copy">
+              If you’re building something in production, marketing automation, or content systems,
+              I’m open to collaborating — especially if it’s fast, weird, and useful.
+            </p>
+            <a class="button" href="contact.html">Contact</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Brian Andrus</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
