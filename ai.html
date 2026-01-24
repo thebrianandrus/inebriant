@@ -79,8 +79,8 @@
       color: var(--fg);
     }
 
-    /* GRID */
-    .ai-row {
+    /* VIDEO GRID */
+    .video-row {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1.25rem;
@@ -88,8 +88,9 @@
       max-width: 1100px;
     }
 
-    /* AI CARD */
-    .ai-card {
+    .video {
+      position: relative;
+      padding-top: 56.25%; /* 16:9 */
       background: rgba(255,255,255,0.03);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -97,13 +98,9 @@
       box-shadow: 0 14px 32px rgba(0,0,0,0.6);
       transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
       animation: cardFloat 6s ease-in-out infinite alternate;
-
-      /* Mirror the iframe "block" feel */
-      padding: 1.25rem 1.25rem 1.15rem;
-      text-align: left;
     }
 
-    .ai-card:hover {
+    .video:hover {
       transform: translateY(-4px);
       border-color: var(--border-hover);
       box-shadow:
@@ -112,55 +109,13 @@
         0 0 26px rgba(255,255,255,0.14);
     }
 
-    .ai-card h3 {
-      margin: 0 0 0.6rem;
-      font-size: 1rem;
-      letter-spacing: 0.08rem;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-
-    .ai-card p {
-      margin: 0 0 0.9rem;
-      color: var(--sub);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    .ai-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem 0.8rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      font-size: 0.8rem;
-      letter-spacing: 0.05rem;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.75);
-    }
-
-    .ai-meta li {
-      padding: 0.35rem 0.55rem;
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.02);
-    }
-
-    .ai-link {
-      display: inline-block;
-      margin-top: 0.9rem;
-      color: var(--sub);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.10rem;
-      text-transform: uppercase;
-      transition: color 0.25s ease;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
-    }
-
-    .ai-link:hover {
-      color: var(--fg);
+    .video iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     /* ANIMATIONS */
@@ -174,7 +129,6 @@
       to { transform: translateY(-5px); }
     }
 
-    /* MOBILE */
     @media (max-width: 600px) {
       .studio-title {
         font-size: 2.2rem;
@@ -201,83 +155,46 @@
     <a href="index.html">Back to Home</a>
   </div>
 
-  <div class="ai-row">
+  <div class="video-row">
 
-    <div class="ai-card">
-      <h3>Prompt Pack — Brand / Program Inputs</h3>
-      <p>
-        Structured prompt templates for turning messy source material into consistent, usable inputs.
-      </p>
-      <ul class="ai-meta">
-        <li>Workflow</li>
-        <li>Templates</li>
-        <li>LLMs</li>
-      </ul>
-      <!-- Optional link (delete if you don't want it) -->
-      <!-- <a class="ai-link" href="#" target="_blank" rel="noopener">View</a> -->
+    <!-- VIDEO 1 -->
+    <div class="video">
+      <iframe
+        src="https://www.youtube.com/embed/VIDEO_ID_1"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
     </div>
 
-    <div class="ai-card">
-      <h3>AI Notes System — Editing + Revisions</h3>
-      <p>
-        A repeatable “notes to self” format for faster video iteration without losing creative intent.
-      </p>
-      <ul class="ai-meta">
-        <li>Post</li>
-        <li>Process</li>
-        <li>Versioning</li>
-      </ul>
+    <!-- VIDEO 2 -->
+    <div class="video">
+      <iframe
+        src="https://www.youtube.com/embed/VIDEO_ID_2"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
     </div>
 
-    <div class="ai-card">
-      <h3>Automation Ideas — Studio Ops</h3>
-      <p>
-        Lightweight automations to reduce friction: naming, organizing, exporting, and documenting.
-      </p>
-      <ul class="ai-meta">
-        <li>Ops</li>
-        <li>Automation</li>
-        <li>Systems</li>
-      </ul>
+    <!-- VIDEO 3 -->
+    <div class="video">
+      <iframe
+        src="https://www.youtube.com/embed/VIDEO_ID_3"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
     </div>
 
-    <div class="ai-card">
-      <h3>Concept Generator — Shorts / Sketches</h3>
-      <p>
-        Rapid idea generation + filtering for feasibility, tone, and “signal,” then turning it into a shootable plan.
-      </p>
-      <ul class="ai-meta">
-        <li>Creative</li>
-        <li>Writing</li>
-        <li>Planning</li>
-      </ul>
-    </div>
-
-    <div class="ai-card">
-      <h3>Website Build Assistant</h3>
-      <p>
-        AI-assisted HTML/CSS iterations to build fast while staying consistent with your site’s aesthetic.
-      </p>
-      <ul class="ai-meta">
-        <li>Web</li>
-        <li>HTML/CSS</li>
-        <li>Iteration</li>
-      </ul>
-    </div>
-
-    <div class="ai-card">
-      <h3>Research Synth — Actionable Summaries</h3>
-      <p>
-        Quick synthesis on tools, trends, and decisions so you move faster with clearer next steps.
-      </p>
-      <ul class="ai-meta">
-        <li>Research</li>
-        <li>Synthesis</li>
-        <li>Strategy</li>
-      </ul>
+    <!-- VIDEO 4 -->
+    <div class="video">
+      <iframe
+        src="https://www.youtube.com/embed/VIDEO_ID_4"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
     </div>
 
   </div>
 
 </body>
 </html>
+
