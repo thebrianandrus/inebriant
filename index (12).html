@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>INEBRIANT STUDIOS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --bg: #000;
+      --fg: #ffffff;
+      --sub: #9a9a9a;
+      --border: rgba(255,255,255,0.14);
+      --border-hover: rgba(255,255,255,0.35);
+      --radius: 18px;
+    }
+
+    body {
+      margin: 0;
+      padding: 2.5rem 1rem 3.5rem;
+      background: var(--bg);
+      color: var(--fg);
+      text-align: center;
+      font-family: Arial, sans-serif;
+      animation: fadeIn 700ms ease-out both;
+    }
+
+    /* CONTACT */
+    .contact {
+      margin-bottom: 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.6px;
+    }
+
+    .contact a {
+      color: var(--sub);
+      text-decoration: none;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+    .contact a:hover { color: var(--fg); }
+
+    /* TITLE */
+    h1 {
+      margin: 0 0 2.5rem;
+      font-size: 2.6rem;
+      letter-spacing: 0.35rem;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-family: "Times New Roman", Times, Georgia, serif;
+    }
+
+    /* SOCIAL LINKS */
+    .links {
+      margin-bottom: 4.5rem;
+    }
+
+    .links a {
+      display: inline-block;
+      margin: 0.5rem 0.75rem;
+      color: var(--sub);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.12rem;
+      text-transform: uppercase;
+      transition: color 0.25s ease;
+    }
+
+    .links a:hover { color: var(--fg); }
+
+    /* HERO IMAGE */
+    .hero-image {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      margin-bottom: 4.5rem;
+    }
+
+    .hero-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* ── POSTER GRID ── */
+    .poster-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .poster-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      aspect-ratio: 2 / 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 1.5rem 1rem;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.6);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      text-decoration: none;
+      animation: cardFloat 6s ease-in-out infinite alternate;
+    }
+
+    .poster-card:nth-child(2) { animation-delay: 1.5s; }
+    .poster-card:nth-child(3) { animation-delay: 3s; }
+    .poster-card:nth-child(4) { animation-delay: 4.5s; }
+
+    .poster-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow:
+        0 0 1px rgba(255,255,255,0.55) inset,
+        0 20px 40px rgba(0,0,0,0.7),
+        0 0 26px rgba(255,255,255,0.14);
+    }
+
+    .poster-title {
+      color: var(--fg);
+      font-size: 1rem;
+      letter-spacing: 0.22rem;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .poster-sub {
+      color: var(--sub);
+      font-size: 0.72rem;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes cardFloat {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-5px); }
+    }
+
+    /* MOBILE */
+    @media (max-width: 700px) {
+      h1 { font-size: 2.2rem; letter-spacing: 0.28rem; }
+
+      .poster-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 420px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contact">
+    <a href="mailto:inebriantstudios@gmail.com">inebriantstudios@gmail.com</a>
+  </div>
+
+  <h1>INEBRIANT STUDIOS</h1>
+
+  <div class="links">
+    <a href="https://www.instagram.com/inebriantstudios/" target="_blank">Instagram</a>
+    <a href="https://www.youtube.com/@inebriant" target="_blank">YouTube</a>
+    <a href="https://www.tiktok.com/@inebriantstudios" target="_blank">TikTok</a>
+  </div>
+
+  <div class="hero-image">
+    <img src="inebriant-home-hero.jpg" alt="Sea turtle underwater">
+  </div>
+
+  <!-- POSTER GRID -->
+  <div class="poster-grid">
+
+    <a class="poster-card" href="films.html">
+      <div class="poster-title">Films</div>
+      <div class="poster-sub">Inebriant Studios</div>
+    </a>
+
+    <a class="poster-card" href="ai.html">
+      <div class="poster-title">AI</div>
+      <div class="poster-sub">Inebriant Studios</div>
+    </a>
+
+    <a class="poster-card" href="pictures.html">
+      <div class="poster-title">Pictures</div>
+      <div class="poster-sub">Inebriant Studios</div>
+    </a>
+
+    <a class="poster-card" href="https://open.spotify.com/artist/7uXZXOa8Bz55lDkX9IPzie" target="_blank">
+      <div class="poster-title">Music</div>
+      <div class="poster-sub">Inebriant Studios</div>
+    </a>
+
+  </div>
+
+</body>
+</html>
