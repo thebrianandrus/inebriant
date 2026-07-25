@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H5ZJCP7NTG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-H5ZJCP7NTG');
+</script>
+  <title>PICTURES | INEBRIANT STUDIOS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <style>
+    :root{
+      --bg:#000;
+      --fg:#fff;
+      --sub:#9a9a9a;
+      --border:rgba(255,255,255,.15);
+      --border-hover:rgba(255,255,255,.35);
+      --radius:14px;
+      --btn-bg:rgba(255,255,255,.06);
+      --btn-bg-hover:rgba(255,255,255,.12);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+      --serif:"Times New Roman", Times, Georgia, serif;
+    }
+
+    *{ box-sizing:border-box; }
+
+    html, body{ background:var(--bg); }
+
+    body{
+      margin:0;
+      padding:2.5rem 1.25rem 4rem;
+      color:var(--fg);
+      font-family: Arial, Helvetica, sans-serif;
+      text-align:center;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+    body.lb-open{ overflow:hidden; }
+
+    /* ---------- header ---------- */
+
+    .contact{
+      margin-bottom:2rem;
+      font-size:.8rem;
+      letter-spacing:.6px;
+    }
+    .contact a{
+      color:var(--sub);
+      text-decoration:none;
+      font-family:var(--mono);
+    }
+    .contact a:hover{ color:var(--fg); }
+
+    .studio-title{
+      margin:0 0 .75rem;
+      font-size:2.6rem;
+      letter-spacing:.35rem;
+      text-transform:uppercase;
+      font-family:var(--serif);
+      font-weight:400;
+    }
+    .page-title{
+      margin:0 0 1.6rem;
+      font-size:.95rem;
+      letter-spacing:.22rem;
+      text-transform:uppercase;
+      color:var(--sub);
+    }
+
+    .links{ margin-bottom:2.75rem; }
+    .links a{
+      margin:0 .75rem;
+      color:var(--sub);
+      text-decoration:none;
+      font-size:.85rem;
+      letter-spacing:.12rem;
+      text-transform:uppercase;
+    }
+    .links a:hover{ color:var(--fg); }
+
+    /* ---------- gallery ---------- */
+
+    .gallery{
+      max-width:1320px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:14px;
+    }
+
+    .tile{
+      position:relative;
+      display:block;
+      width:100%;
+      padding:0;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.03);
+      overflow:hidden;
+      cursor:pointer;
+      aspect-ratio: 4 / 3;
+      opacity:0;
+      transform:translateY(14px);
+      animation:tileIn .7s ease forwards;
+      transition:border-color .3s ease;
+    }
+    .tile:hover{ border-color:var(--border-hover); }
+    .tile:focus-visible{
+      outline:2px solid #fff;
+      outline-offset:3px;
+    }
+
+    .tile img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+      opacity:.78;
+      transform:scale(1.001);
+      transition:opacity .45s ease, transform .8s cubic-bezier(.2,.7,.3,1);
+      -webkit-user-drag:none;
+      user-select:none;
+    }
+    .tile:hover img,
+    .tile:focus-visible img{
+      opacity:1;
+      transform:scale(1.045);
+    }
+
+    /* frame number — same counter language as the viewer */
+    .tile .num{
+      position:absolute;
+      left:10px;
+      bottom:9px;
+      font-family:var(--mono);
+      font-size:.72rem;
+      letter-spacing:.06rem;
+      color:#fff;
+      text-shadow:0 2px 10px rgba(0,0,0,.9);
+      opacity:0;
+      transform:translateY(4px);
+      transition:opacity .3s ease, transform .3s ease;
+      pointer-events:none;
+    }
+    .tile:hover .num,
+    .tile:focus-visible .num{ opacity:.9; transform:translateY(0); }
+
+    @keyframes tileIn{
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+    .galleryNote{
+      margin:2rem auto 0;
+      color:var(--sub);
+      font-size:.78rem;
+      letter-spacing:.14rem;
+      text-transform:uppercase;
+    }
+
+    @media (max-width:900px){
+      .gallery{ grid-template-columns:repeat(2, 1fr); gap:10px; }
+    }
+    @media (max-width:520px){
+      body{ padding:2rem 1rem 3rem; }
+      .studio-title{ font-size:2.1rem; letter-spacing:.26rem; }
+      .gallery{ grid-template-columns:repeat(2, 1fr); gap:8px; }
+    }
+
+    /* ---------- lightbox ---------- */
+
+    .lightbox{
+      position:fixed;
+      inset:0;
+      z-index:100;
+      background:rgba(0,0,0,.97);
+      display:none;
+      flex-direction:column;
+      padding:
+        calc(env(safe-area-inset-top) + 14px)
+        14px
+        calc(env(safe-area-inset-bottom) + 14px);
+    }
+    .lightbox.open{ display:flex; animation:fadeIn .25s ease; }
+
+    @keyframes fadeIn{ from{ opacity:0 } to{ opacity:1 } }
+
+    .lbTop{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      height:44px;
+      flex:0 0 auto;
+    }
+
+    .lbStage{
+      flex:1 1 auto;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:0;
+    }
+
+    .lbStage img{
+      max-width:100%;
+      max-height:100%;
+      width:auto;
+      height:auto;
+      object-fit:contain;
+      display:block;
+      border-radius:6px;
+      -webkit-user-drag:none;
+      user-select:none;
+      animation:imgIn .35s ease;
+    }
+    @keyframes imgIn{ from{ opacity:0 } to{ opacity:1 } }
+
+    .lbStatus{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      color:var(--sub);
+      font-size:.85rem;
+      letter-spacing:.1rem;
+      text-transform:uppercase;
+      white-space:pre-line;
+      padding:1.5rem;
+      text-align:center;
+    }
+
+    .lbBar{
+      flex:0 0 auto;
+      height:56px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:22px;
+      margin-top:8px;
+    }
+
+    .counter{
+      font-family:var(--mono);
+      font-size:.82rem;
+      letter-spacing:.08rem;
+      color:var(--fg);
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:.4rem .8rem;
+      background:rgba(255,255,255,.04);
+      min-width:78px;
+    }
+
+    .ctrl{
+      width:52px;
+      height:52px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--btn-bg);
+      color:var(--fg);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+      transition:background .2s ease, border-color .2s ease, transform .2s ease;
+    }
+    .ctrl:hover{
+      background:var(--btn-bg-hover);
+      border-color:var(--border-hover);
+    }
+    .ctrl:focus-visible{ outline:2px solid #fff; outline-offset:3px; }
+    .close{ width:44px; height:44px; }
+
+    /* Desktop: arrows float beside the photo, never on top of it */
+    .side{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:5;
+    }
+    .side:hover{ transform:translateY(-50%) scale(1.05); }
+    .side.left{ left:8px; }
+    .side.right{ right:8px; }
+
+    /* keep the image clear of the side arrows on desktop */
+    @media (min-width:781px){
+      .lbStage img{ max-width:calc(100% - 160px); }
+      .lbBar .ctrl{ display:none; }
+    }
+
+    /* Mobile: no arrows over the photo — they live in the bottom bar */
+    @media (max-width:780px){
+      .side{ display:none; }
+      .lbBar{ gap:18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important; }
+      .tile{ opacity:1; transform:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="contact">
+    <a href="mailto:inebriantstudios@gmail.com">inebriantstudios@gmail.com</a>
+  </div>
+
+  <h1 class="studio-title">INEBRIANT STUDIOS</h1>
+  <div class="page-title">PICTURES</div>
+
+  <div class="links">
+    <a href="index.html">Back to Home</a>
+  </div>
+
+  <main class="gallery" id="gallery" aria-label="Photograph gallery"></main>
+
+  <p class="galleryNote">Select a photograph to view full size</p>
+
+  <!-- Full-screen viewer -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photograph viewer" hidden>
+    <div class="lbTop">
+      <button class="ctrl close" id="closeBtn" aria-label="Close viewer" title="Close (Esc)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="lbStage" id="stage">
+      <button class="ctrl side left" data-nav="prev" aria-label="Previous photograph" title="Previous (←)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="lbStatus" id="lbStatus">Loading…</div>
+      <img id="lbPhoto" alt="" hidden>
+
+      <button class="ctrl side right" data-nav="next" aria-label="Next photograph" title="Next (→)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="lbBar">
+      <button class="ctrl" data-nav="prev" aria-label="Previous photograph">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="counter" id="counter" aria-live="polite">0 / 0</div>
+
+      <button class="ctrl" data-nav="next" aria-label="Next photograph">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      /* Add or reorder filenames here — the gallery and viewer both read this list. */
+      const IMAGES = [
+        "9734.jpg",
+        "atl-truck.JPG",
+        "9724.jpg",
+        "9727.jpg",
+        "9714.jpg",
+        "IMG_9402.jpg",
+        "IMG_9601-edit.jpg"
+      ];
+
+      const gallery  = document.getElementById("gallery");
+      const lightbox = document.getElementById("lightbox");
+      const stage    = document.getElementById("stage");
+      const photo    = document.getElementById("lbPhoto");
+      const status   = document.getElementById("lbStatus");
+      const counter  = document.getElementById("counter");
+      const closeBtn = document.getElementById("closeBtn");
+
+      let index = 0;
+      let lastFocused = null;
+
+      /* ---------- build the gallery ---------- */
+
+      IMAGES.forEach((src, i) => {
+        const tile = document.createElement("button");
+        tile.className = "tile";
+        tile.type = "button";
+        tile.style.animationDelay = `${i * 70}ms`;
+        tile.setAttribute("aria-label", `Open photograph ${i + 1} of ${IMAGES.length}`);
+
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = `Photograph ${i + 1}`;
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.addEventListener("error", () => {
+          tile.style.opacity = ".35";
+          tile.setAttribute("data-broken", "true");
+        });
+
+        const num = document.createElement("span");
+        num.className = "num";
+        num.textContent = String(i + 1).padStart(2, "0");
+
+        tile.append(img, num);
+        tile.addEventListener("click", () => open(i, tile));
+        gallery.appendChild(tile);
+      });
+
+      /* ---------- viewer ---------- */
+
+      const wrap = i => (i % IMAGES.length + IMAGES.length) % IMAGES.length;
+
+      function show(i){
+        index = wrap(i);
+        const src = IMAGES[index];
+
+        counter.textContent = `${index + 1} / ${IMAGES.length}`;
+        status.textContent = "Loading…";
+        status.style.display = "grid";
+        photo.hidden = true;
+
+        const temp = new Image();
+        temp.onload = () => {
+          if (IMAGES[index] !== src) return;   // user already moved on
+          photo.src = src;
+          photo.alt = `Photograph ${index + 1} of ${IMAGES.length}`;
+          photo.hidden = false;
+          status.style.display = "none";
+          preload(index + 1);
+          preload(index - 1);
+        };
+        temp.onerror = () => {
+          if (IMAGES[index] !== src) return;
+          status.textContent = `Could not load ${src}\nCheck the filename and location.`;
+        };
+        temp.src = src;
+      }
+
+      function preload(i){ new Image().src = IMAGES[wrap(i)]; }
+
+      function open(i, trigger){
+        lastFocused = trigger || document.activeElement;
+        lightbox.hidden = false;
+        lightbox.classList.add("open");
+        document.body.classList.add("lb-open");
+        show(i);
+        closeBtn.focus();
+      }
+
+      function close(){
+        lightbox.classList.remove("open");
+        lightbox.hidden = true;
+        document.body.classList.remove("lb-open");
+        photo.removeAttribute("src");
+        if (lastFocused) lastFocused.focus();
+      }
+
+      const isOpen = () => lightbox.classList.contains("open");
+
+      closeBtn.addEventListener("click", close);
+
+      document.querySelectorAll("[data-nav]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          show(index + (btn.dataset.nav === "next" ? 1 : -1));
+        });
+      });
+
+      // click the backdrop (not the photo or a control) to close
+      lightbox.addEventListener("click", e => {
+        if (e.target === lightbox || e.target === stage || e.target === status) close();
+      });
+
+      window.addEventListener("keydown", e => {
+        if (!isOpen()) return;
+        if (e.key === "Escape")     close();
+        if (e.key === "ArrowRight") show(index + 1);
+        if (e.key === "ArrowLeft")  show(index - 1);
+      });
+
+      // swipe
+      let startX = null, startY = null;
+      stage.addEventListener("touchstart", e => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+      }, { passive:true });
+
+      stage.addEventListener("touchend", e => {
+        if (startX === null) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        const dy = e.changedTouches[0].clientY - startY;
+        if (Math.abs(dx) > 45 && Math.abs(dy) < 80) show(index + (dx < 0 ? 1 : -1));
+        startX = startY = null;
+      }, { passive:true });
+    });
+  </script>
+</body>
+</html>
