@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H5ZJCP7NTG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-H5ZJCP7NTG');
+</script>
+  <title>SIMULATIONS | INEBRIANT STUDIOS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Pannellum 360 viewer -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+  <style>
+    :root {
+      --bg: #000;
+      --fg: #ffffff;
+      --sub: #9a9a9a;
+      --border: rgba(255,255,255,0.14);
+      --border-hover: rgba(255,255,255,0.35);
+      --radius: 18px;
+    }
+
+    body {
+      margin: 0;
+      padding: 2.5rem 1rem 5rem;
+      background: var(--bg);
+      color: var(--fg);
+      text-align: center;
+      font-family: Arial, sans-serif;
+      animation: fadeIn 700ms ease-out both;
+    }
+
+    /* CONTACT */
+    .contact {
+      margin-bottom: 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.6px;
+    }
+
+    .contact a {
+      color: var(--sub);
+      text-decoration: none;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+    .contact a:hover { color: var(--fg); }
+
+    /* TITLES */
+    .studio-title {
+      margin: 0 0 0.75rem;
+      font-size: 2.6rem;
+      letter-spacing: 0.35rem;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-family: "Times New Roman", Times, Georgia, serif;
+    }
+
+    .page-title {
+      margin: 0 0 2.25rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.22rem;
+      text-transform: uppercase;
+      color: var(--sub);
+    }
+
+    /* NAV */
+    .links {
+      margin-bottom: 3.25rem;
+    }
+
+    .links a {
+      margin: 0.5rem 0.75rem;
+      color: var(--sub);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.12rem;
+      text-transform: uppercase;
+      transition: color 0.25s ease;
+    }
+
+    .links a:hover { color: var(--fg); }
+
+    /* ── FULL-BLEED PANORAMA ── */
+    .pano-stage {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      opacity: 0;
+      animation: revealUp 700ms ease-out 150ms forwards;
+    }
+
+    #panorama {
+      width: 100%;
+      height: 78vh;
+      min-height: 420px;
+      background: #050505;
+      cursor: grab;
+    }
+
+    #panorama:active { cursor: grabbing; }
+
+    /* Strip Pannellum's default chrome so it reads as part of the site */
+    .pnlm-container {
+      background: #050505 !important;
+      font-family: Arial, sans-serif;
+    }
+
+    .pnlm-title-box,
+    .pnlm-author-box,
+    .pnlm-panorama-info { display: none !important; }
+
+    .pnlm-load-box,
+    .pnlm-lmsg {
+      background: transparent !important;
+      color: var(--sub) !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    /* CAPTION */
+    .pano-caption {
+      max-width: 620px;
+      margin: 2rem auto 0;
+      color: var(--sub);
+      font-size: 0.78rem;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+      line-height: 1.9;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      .studio-title {
+        font-size: 2.2rem;
+        letter-spacing: 0.28rem;
+      }
+
+      #panorama {
+        height: 62vh;
+        min-height: 340px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+      .pano-stage { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contact">
+    <a href="mailto:inebriantstudios@gmail.com">inebriantstudios@gmail.com</a>
+  </div>
+
+  <h1 class="studio-title">INEBRIANT STUDIOS</h1>
+  <div class="page-title">SIMULATIONS</div>
+
+  <div class="links">
+    <a href="/simulations.html">Back to Simulations</a>
+  </div>
+
+  <div class="pano-stage">
+    <div id="panorama"></div>
+  </div>
+
+  <div class="pano-caption">Drag to look around</div>
+
+  <script>
+    // ─────────────────────────────────────────────────────────────
+    // CONFIG — edit here only
+    // PANORAMA: root-relative path to the equirectangular image.
+    // Spaces MUST be written as %20. If you rename the file (recommended),
+    // update this one line.
+    // ─────────────────────────────────────────────────────────────
+    const CONFIG = {
+      PANORAMA: '/2026-09-12_11.52_2026%20Halloween.png',
+      HFOV: 100,
+      MIN_HFOV: 50,
+      MAX_HFOV: 120,
+      YAW: 0,
+      PITCH: 0
+    };
+
+    pannellum.viewer('panorama', {
+      type: 'equirectangular',
+      panorama: CONFIG.PANORAMA,
+      autoLoad: true,
+      showZoomCtrl: false,
+      showFullscreenCtrl: true,
+      showControls: true,
+      hfov: CONFIG.HFOV,
+      minHfov: CONFIG.MIN_HFOV,
+      maxHfov: CONFIG.MAX_HFOV,
+      yaw: CONFIG.YAW,
+      pitch: CONFIG.PITCH
+    });
+  </script>
+
+</body>
+</html>
